@@ -42,7 +42,7 @@ form {
   font-size: 16px;
 }
 
-input[type="submit"] {
+#submit_button {
   background-color: #d648c3;
   color: #ffffff;
   border: none;
@@ -53,12 +53,12 @@ input[type="submit"] {
   transition: background-color 0.3s ease;
 }
 
-input[type="submit"]:hover {
+#submit_button:hover {
   background-color: #1570d1;
 }
 
-div {
-  margin-top: 20px;
+.poem {
+  margin-top: 10px;
   font-size: 18px;
   line-height: 1.5;
   color: #555;
