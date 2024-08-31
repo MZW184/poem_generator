@@ -1,8 +1,10 @@
-// API
 function getTheGeneratedPoem(response) {
-  let poemText = response.data.answer;
+  const poemText = response.data.answer;
+  const poemContainer = document.querySelector(".poem");
 
-  new Typewriter("#poem", {
+  document.querySelector(".loading-icon").style.display = "none";
+
+  new Typewriter(poemContainer, {
     strings: [poemText],
     autoStart: true,
     delay: 50,
@@ -13,19 +15,23 @@ function getTheGeneratedPoem(response) {
 function generateApoem(event) {
   event.preventDefault();
 
-  let userInstruction = document.querySelector("#user_instructions").value;
+  const userInstruction = document.querySelector("#user_instructions").value;
 
-  let context = `You are a romantic poet, weaving delicate verses. Your task: create four short lines of beauty. Beneath each line, place a <br/> to let the words breathe. Finally, sign off with a touch of light pink—bold and sweet: “SheCodes AI Generator.” 🌸✨`;
+  const context = `You are a romantic poet, weaving delicate verses. Your task: create four short lines of beauty. Beneath each line, place a <br/> to let the words breathe. Finally, sign off with: <strong>“SheCodes AI Generator.” 🌸✨</strong>`;
 
-  let prompt = `Write a poem about ${userInstruction}`;
+  const prompt = `Write a poem about ${userInstruction}`;
 
-  let apiKey = "248a5b083cf5484310345e4f53aedobt";
-  let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${encodeURIComponent(
+  const apiKey = "248a5b083cf5484310345e4f53aedobt";
+  const apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${encodeURIComponent(
     prompt
   )}&context=${encodeURIComponent(context)}&key=${apiKey}`;
 
-  axios.get(apiUrl).then(getTheGeneratedPoem);
+  document.querySelector(".loading-icon").style.display = "block";
+
+  setTimeout(() => {
+    axios.get(apiUrl).then(getTheGeneratedPoem);
+  }, 2000);
 }
 
-let poemForm = document.querySelector("#poem-gen-form");
+const poemForm = document.querySelector("#poem-gen-form");
 poemForm.addEventListener("submit", generateApoem);

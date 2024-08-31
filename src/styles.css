@@ -69,6 +69,7 @@ footer {
   margin-top: 30px;
   font-size: 14px;
   color: #888;
+  opacity: 0.8;
 }
 
 footer a {
@@ -78,4 +79,25 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+small {
+  position: relative;
+  top: -20px;
+  line-height: 1.5;
+  opacity: 0.6;
+}
+
+.loading-icon {
+  font-size: 24px;
+  animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
